@@ -1,7 +1,3 @@
-// piedra papel o tijera. 
-// necesito que la persona elija 1 con un input (prompt en js) it has to be case sens
-//la maquina tiene que elegir el suyo con un random gen (no se como en js) 
-// establecer que le gana a que y que comparar las respuestas para saber quien gano.
 
 
 let playerScore = 0;
