@@ -1,106 +1,62 @@
+const resultadosDiv = document.querySelector('#resultados');
 
+function playRound(playerSelection) {
 
-let playerScore = 0;
-let computerScore = 0;
+    
+    resultadosDiv.innerHTML = ''; 
 
+    
+    const eleccionJugadorP = document.createElement('p');
+    eleccionJugadorP.textContent = `Elegiste: ${playerSelection}`;
 
-function playRound() {
+    const cchoice = ['piedra', 'papel', 'tijera'];
+    const computerSeleciton = cchoice[Math.floor(Math.random() * cchoice.length)];
 
+    const eleccionComputadoraP = document.createElement('p');
+    eleccionComputadoraP.textContent = `La computadora eligió: ${computerSeleciton} !!`;
+    
+    
+    const resultadoFinalP = document.createElement('p');
 
-    // PLAYERS CHOICE
-
-    let playerChoice = null;
-
-    let rawInput = prompt('elegi piedra papel o tijera: ')
-     processedInput = rawInput.toLowerCase();
-
-    if (processedInput === 'piedra' || processedInput === 'papel' || processedInput === 'tijera'){
-        playerChoice = processedInput;
+    
+    if (playerSelection === computerSeleciton) {
+        resultadoFinalP.textContent = 'EMPATE!!';
+    } else if (
+        (playerSelection === 'piedra' && computerSeleciton === 'tijera') ||
+        (playerSelection === 'papel' && computerSeleciton === 'piedra') ||
+        (playerSelection === 'tijera' && computerSeleciton === 'papel')
+    ) {
+        resultadoFinalP.textContent = 'Le ganaste a la máquina, ¡maquinola!';
+        
+        resultadoFinalP.style.color = 'green'; 
+        resultadoFinalP.style.fontWeight = 'bold';
     } else {
-        alert('deja de tirar fruta siome')
+        resultadoFinalP.textContent = 'Te ganó la maquinola, ¡mortadela!';
+        
+        resultadoFinalP.style.color = 'red';
+        resultadoFinalP.style.fontWeight = 'bold';
     }
 
-    console.log('vos elegiste: ', playerChoice)
-
-    // COMPUTADORA CHOICE
-
-    let computerNumber = Math.floor(Math.random() * 3);
-    let computerChoice;
-
-    if (computerNumber === 0) {
-        computerChoice = 'piedra';
-    } else if (computerNumber === 1) {
-        computerChoice = 'papel';
-    } else {
-        computerChoice = 'tijera';
-    }
-
-    console.log('La maquina eligio: ', computerChoice)
-
-    // COMPUTADORA WINS
-
-    if (computerChoice === 'piedra' && playerChoice === 'tijera'){
-        console.log('Perdiste!');
-        return 'computer';
-    } else if (computerChoice === 'papel' && playerChoice === 'piedra'){
-        console.log('Perdiste!'); 
-        return 'computer'  
-    } else if (computerChoice === 'tijera' && playerChoice === 'papel'){
-        console.log('Perdiste!')
-        return 'computer'
-    }
-
-    // PLAYER WINS
-
-    if (playerChoice === 'piedra' && computerChoice === 'tijera') {
-        console.log('GANASTE!');
-        return 'player'
-    } else if (playerChoice === 'papel' && computerChoice === 'piedra'){
-        console.log('GANASTE!');
-        return 'player'
-    } else if(playerChoice === 'tijera' && computerChoice === 'papel'){
-        console.log('GANASTE!');
-        return 'player'
-    }
-
-    // TIE
-
-    if (playerChoice === computerChoice){
-        console.log('EMPATE!');
-        return 'tie'
-    }
-
-    }
-
-// playRound()
-
-
-while (playerScore < 5 && computerScore < 5){
-    const roundWinner = playRound();
-    if (roundWinner === 'player'){
-        playerScore += 1;
-    } else if (roundWinner === 'computer'){
-        computerScore +=1;
-    }
-
-    console.log(`Puntuacion: jugador ${playerScore} - computadora ${computerScore} `)
-
+    
+    resultadosDiv.appendChild(eleccionJugadorP);
+    resultadosDiv.appendChild(eleccionComputadoraP);
+    resultadosDiv.appendChild(resultadoFinalP);
 }
 
 
 
-console.log("--------------------");
-console.log("¡JUEGO TERMINADO!");
+const botonPiedra = document.querySelector('#piedra');
+const botonPapel = document.querySelector('#papel');
+const botonTijera = document.querySelector('#tijera');
 
-if (playerScore === 5) {
-    console.log("LE GANASTE A LA MAQUINA!");
-} else {
-    console.log("TE GANO LA MAQUINA MANCO ");
-}
+botonPiedra.addEventListener('click', function() {
+    playRound('piedra');
+});
 
+botonPapel.addEventListener('click', function() {
+    playRound('papel');
+});
 
-
-
-
-
-
+botonTijera.addEventListener('click', function() {
+    playRound('tijera');
+});
