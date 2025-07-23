@@ -1,62 +1,65 @@
-const resultadosDiv = document.querySelector('#resultados');
+const divResults = document.querySelector('#resultados');
 
 function playRound(playerSelection) {
 
     
-    resultadosDiv.innerHTML = ''; 
+    divResults.innerHTML = ''; 
 
     
-    const eleccionJugadorP = document.createElement('p');
-    eleccionJugadorP.textContent = `Elegiste: ${playerSelection}`;
+    const playerChoiceP = document.createElement('p');
+    playerChoiceP.textContent = `Elegiste: ${playerSelection}`;
 
-    const cchoice = ['piedra', 'papel', 'tijera'];
-    const computerSeleciton = cchoice[Math.floor(Math.random() * cchoice.length)];
+    const cChoice = ['piedra', 'papel', 'tijera'];
+    const computerSelection = cChoice[Math.floor(Math.random() * cChoice.length)];
 
-    const eleccionComputadoraP = document.createElement('p');
-    eleccionComputadoraP.textContent = `La computadora eligió: ${computerSeleciton} !!`;
+    const computerSelectionP = document.createElement('p');
+    computerSelectionP.textContent = `La computadora eligió: ${computerSelection} !!`;
     
     
-    const resultadoFinalP = document.createElement('p');
+    const roundWinner = document.createElement('p');
 
     
-    if (playerSelection === computerSeleciton) {
-        resultadoFinalP.textContent = 'EMPATE!!';
+    if (playerSelection === computerSelection) {
+        roundWinner.textContent = 'EMPATE!!';
     } else if (
-        (playerSelection === 'piedra' && computerSeleciton === 'tijera') ||
-        (playerSelection === 'papel' && computerSeleciton === 'piedra') ||
-        (playerSelection === 'tijera' && computerSeleciton === 'papel')
+        (playerSelection === 'piedra' && computerSelection === 'tijera') ||
+        (playerSelection === 'papel' && computerSelection === 'piedra') ||
+        (playerSelection === 'tijera' && computerSelection === 'papel')
     ) {
-        resultadoFinalP.textContent = 'Le ganaste a la máquina, ¡maquinola!';
+        roundWinner.textContent = 'Le ganaste a la máquina, maquinola!';
         
-        resultadoFinalP.style.color = 'green'; 
-        resultadoFinalP.style.fontWeight = 'bold';
+        roundWinner.style.color = 'green'; 
+        roundWinner.style.fontWeight = 'bold';
     } else {
-        resultadoFinalP.textContent = 'Te ganó la maquinola, ¡mortadela!';
+        roundWinner.textContent = 'Te ganó la maquinola, mortadela!';
         
-        resultadoFinalP.style.color = 'red';
-        resultadoFinalP.style.fontWeight = 'bold';
+        roundWinner.style.color = 'red';
+        roundWinner.style.fontWeight = 'bold';
     }
 
     
-    resultadosDiv.appendChild(eleccionJugadorP);
-    resultadosDiv.appendChild(eleccionComputadoraP);
-    resultadosDiv.appendChild(resultadoFinalP);
+    divResults.appendChild(playerChoiceP);
+    divResults.appendChild(computerSelectionP);
+    divResults.appendChild(roundWinner);
 }
 
 
 
-const botonPiedra = document.querySelector('#piedra');
-const botonPapel = document.querySelector('#papel');
-const botonTijera = document.querySelector('#tijera');
+const rockButton = document.querySelector('#piedra');
+const paperButton = document.querySelector('#papel');
+const scissorButton = document.querySelector('#tijera');
 
-botonPiedra.addEventListener('click', function() {
+rockButton.addEventListener('click', function() {
     playRound('piedra');
 });
 
-botonPapel.addEventListener('click', function() {
+paperButton.addEventListener('click', function() {
     playRound('papel');
 });
 
-botonTijera.addEventListener('click', function() {
+scissorButton.addEventListener('click', function() {
     playRound('tijera');
 });
+
+
+
