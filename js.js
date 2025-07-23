@@ -1,4 +1,4 @@
-const divResults = document.querySelector('#resultados');
+const divResults = document.querySelector('#results');
 
 function playRound(playerSelection) {
 
