@@ -12,12 +12,9 @@ function getComputerChoice() {
 
 // HUMANS CHOICE
 function getHumanChoice() {
-    // Prompt the user for their choice
     let hChoice = prompt('Choose: rock, paper, or scissors');
-
-    // Keep prompting until a valid choice is entered
     while (!weapons.includes(hChoice.toLowerCase())) {
-        hChoice = prompt('Invalid choice. Please choose: rock, paper, or scissors');
+        hChoice = prompt('Elegi bien manco: rock, paper, or scissors');
     }
 
     const hInput = hChoice.toLowerCase();
@@ -25,11 +22,11 @@ function getHumanChoice() {
 }
 
 function playRound(humanSelection, computerSelection) {
-    console.log(`You chose: ${humanSelection}`);
-    console.log(`The computer chose: ${computerSelection}`);
+    console.log(`Elegiste: ${humanSelection}`);
+    console.log(`La maquinola eligio: ${computerSelection}`);
 
     if (humanSelection === computerSelection) {
-        console.log("It's a tie!");
+        console.log("EMPATE");
     }
     else if (
         (humanSelection === 'rock' && computerSelection === 'scissors') ||
@@ -37,14 +34,14 @@ function playRound(humanSelection, computerSelection) {
         (humanSelection === 'paper' && computerSelection === 'rock')
     ) {
         humanScore++;
-        console.log(`You win this round! ${humanSelection} beats ${computerSelection}.`);
+        console.log(`Ganaste la ronda perro! ${humanSelection} beats ${computerSelection}.`);
     }
     else {
         computerScore++;
-        console.log(`You lose this round! ${computerSelection} beats ${humanSelection}.`);
+        console.log(`Perdiste amigazo :( ${computerSelection} beats ${humanSelection}.`);
     }
 
-    console.log(`Score -> You: ${humanScore} | Computer: ${computerScore}`);
+    console.log(`Vos: ${humanScore} | Coputadora: ${computerScore}`);
 }
 
 const humanSelection = getHumanChoice();
