@@ -1,20 +1,23 @@
 function playGame() {
     let humanScore = 0;
     let computerScore = 0;
+    
+    const weapons = ['rock', 'paper', 'scissors'];
 
     function getComputerSelection() {
-        const choices = ['rock', 'paper', 'scissors'];
-        const randomIndex = Math.floor(Math.random() * choices.length);
-        return choices[randomIndex];
+            const cChoice = weapons;
+            const cInput = cChoice[Math.floor(Math.random() * cChoice.length)];
+            return cInput;
     }
 
     function getHumanSelection() {
         while (true) {
             let choice = prompt("Elige piedra, papel o tijera:").toLowerCase();
-            if (choice === 'rock' || choice === 'paper' || choice === 'scissors') {
+            const hInput = choice.toLocaleLowerCase();
+            if (weapons.includes(hInput)) {
                 return choice;
             } else {
-                alert("Opción no válida. Por favor, elige piedra, papel o tijera.");
+                alert("Opción no válida. Elegi bien manco");
             }
         }
     }
@@ -46,9 +49,9 @@ function playGame() {
 
     console.log("¡Juego terminado!");
     if (humanScore === 5) {
-        console.log("¡FELICIDADES! ¡Has ganado el juego!");
+        console.log("¡FELICIDADES! Ganaste el juego!");
     } else {
-        console.log("La computadora ha ganado el juego. ¡Mejor suerte la próxima vez!");
+        console.log("La computadora te gano. ¡Mejor suerte la próxima vez!");
     }
 }
 
