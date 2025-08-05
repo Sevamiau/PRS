@@ -2,8 +2,22 @@ let humanScore = 0;
 let computerScore = 0;
     
 const weapons = ['rock', 'paper', 'scissors'];
+const humanScoreDisplay = document.querySelector('#humanScoreDisplay');
+const computerScoreDisplay = document.querySelector('#computerScoreDisplay');
+const roundResult = document.querySelector('#roundResult');
+const gameWinner = document.querySelector('#gameWinner');
+const scissorsBtn = document.querySelector('#scissorsBtn');
+const paperBtn = document.querySelector('#paperBtn');
+const rockBtn = document.querySelector('#rockBtn');
+const humanChoice = document.querySelector('#humanChoice');
+const computerChoice = document.querySelector('#computerChoice');
 
-    
+
+function upadteScoreDisplay() {
+    humanScoreDisplay.textContent = humanScore;
+    computerScoreDisplay.textContent = computerScore;
+
+}    
 
 function getComputerSelection() {
     const cChoice = weapons;
@@ -11,52 +25,62 @@ function getComputerSelection() {
         return cInput;
     }
 
-
-
 function playRound(humanSelection, computerSelection) {
-    console.log(`Elegiste: ${humanSelection}`);
-    console.log(`La computadora eligió: ${computerSelection}`);
 
     if (humanSelection === computerSelection) {
-        console.log("¡EMPATE en esta ronda!");
+
     } else if ((humanSelection === 'rock' && computerSelection === 'scissors') ||
                (humanSelection === 'scissors' && computerSelection === 'paper') ||
                (humanSelection === 'paper' && computerSelection === 'rock')) {
-        humanScore++;
-        console.log(`¡Ganaste la ronda! ${humanSelection} le gana a ${computerSelection}.`);
+                
+                humanScore++;
         } else {
-            computerScore++;
-            console.log(`Perdiste la ronda :( ${computerSelection} le gana a ${humanSelection}.`);
-        }
-
-        console.log(`Marcador: Tú ${humanScore} - Computadora ${computerScore}`)
+                computerScore++;
     }
 
 
 
-function playGame(){
+    function choiceDisplay(){
+    humanChoice.textContent = humanSelection;
+    computerChoice.textContent = computerSelection;
+}
 
-    const rockBtn = document.querySelector('#rockBtn');
+    choiceDisplay();
+    upadteScoreDisplay();
+    checkWinner();
+}
+
+
+function checkWinner(){
+    if (humanScore === 5){
+        gameWinner.textContent = 'GANASTE PERROOOO';
+    } else if (computerScore === 5){
+        gameWinner.textContent = 'MAL AHI PERDISTE AMIGO'
+    } 
+}
+
+function playGame(){
     rockBtn.addEventListener('click', () => {
         if (humanScore < 5 && computerScore < 5){
             playRound('rock', getComputerSelection())
         }
     });
 
-    const paperBtn = document.querySelector('#paperBtn');
+
     paperBtn.addEventListener('click', () => {
         if(humanScore < 5 && computerScore < 5){
             playRound('paper', getComputerSelection());
         }
     })
 
-    const scissorsBtn = document.querySelector('#scissorsBtn');
+    
     scissorsBtn.addEventListener('click', () => {
         if(humanScore < 5 && computerScore <5){
             playRound('scissors', getComputerSelection());
         }
     })
-}
 
+ 
+}
 
 playGame();
