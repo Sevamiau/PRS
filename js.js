@@ -23,20 +23,17 @@ function getComputerSelection() {
     const cChoice = weapons;
     const cInput = cChoice[Math.floor(Math.random() * cChoice.length)];
         return cInput;
-    }
+}
 
 function playRound(humanSelection, computerSelection) {
+    if ((humanSelection === 'rock' && computerSelection === 'scissors') ||
+        (humanSelection === 'scissors' && computerSelection === 'paper') ||
+        (humanSelection === 'paper' && computerSelection === 'rock')) {
 
-    if (humanSelection === computerSelection) {
-
-    } else if ((humanSelection === 'rock' && computerSelection === 'scissors') ||
-               (humanSelection === 'scissors' && computerSelection === 'paper') ||
-               (humanSelection === 'paper' && computerSelection === 'rock')) {
-                
-                humanScore++;
-        } else {
-                computerScore++;
-    }
+        humanScore++;
+    } else {
+        computerScore++;
+}
 
 
 
