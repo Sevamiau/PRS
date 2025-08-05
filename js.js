@@ -1,6 +1,6 @@
 let humanScore = 0;
 let computerScore = 0;
-    
+
 const weapons = ['rock', 'paper', 'scissors'];
 const humanScoreDisplay = document.querySelector('#humanScoreDisplay');
 const computerScoreDisplay = document.querySelector('#computerScoreDisplay');
@@ -16,68 +16,64 @@ const computerChoice = document.querySelector('#computerChoice');
 function upadteScoreDisplay() {
     humanScoreDisplay.textContent = humanScore;
     computerScoreDisplay.textContent = computerScore;
-
 }    
 
 function getComputerSelection() {
     const cChoice = weapons;
     const cInput = cChoice[Math.floor(Math.random() * cChoice.length)];
-        return cInput;
+    return cInput;
 }
 
 function playRound(humanSelection, computerSelection) {
-    if ((humanSelection === 'rock' && computerSelection === 'scissors') ||
+    if (
+        (humanSelection === 'rock'     && computerSelection === 'scissors') ||
         (humanSelection === 'scissors' && computerSelection === 'paper') ||
-        (humanSelection === 'paper' && computerSelection === 'rock')) {
-
+        (humanSelection === 'paper'    && computerSelection === 'rock')
+    ) {
         humanScore++;
     } else {
         computerScore++;
-}
+    }
 
-
-
-    function choiceDisplay(){
-    humanChoice.textContent = humanSelection;
-    computerChoice.textContent = computerSelection;
-}
+    function choiceDisplay() {
+        humanChoice.textContent = humanSelection;
+        computerChoice.textContent = computerSelection;
+    }
 
     choiceDisplay();
+    console.log(humanScore, computerScore);
     upadteScoreDisplay();
     checkWinner();
 }
 
 
 function checkWinner(){
-    if (humanScore === 5){
+    if (humanScore === 5) {
         gameWinner.textContent = 'GANASTE PERROOOO';
-    } else if (computerScore === 5){
+    } else if (computerScore === 5) {
         gameWinner.textContent = 'MAL AHI PERDISTE AMIGO'
     } 
 }
 
 function playGame(){
     rockBtn.addEventListener('click', () => {
-        if (humanScore < 5 && computerScore < 5){
+        if (humanScore < 5 && computerScore < 5) {
             playRound('rock', getComputerSelection())
         }
     });
 
 
     paperBtn.addEventListener('click', () => {
-        if(humanScore < 5 && computerScore < 5){
+        if(humanScore < 5 && computerScore < 5) {
             playRound('paper', getComputerSelection());
         }
     })
 
-    
     scissorsBtn.addEventListener('click', () => {
-        if(humanScore < 5 && computerScore <5){
+        if(humanScore < 5 && computerScore <5) {
             playRound('scissors', getComputerSelection());
         }
-    })
-
- 
+    }) 
 }
 
-playGame();
+playGame()
